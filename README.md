@@ -7,7 +7,7 @@ Contains the following workshops:
 - K8S WORKSHOP 4
   sperated for each section of the work:
   - K8S exam
-  - Pod Design Questions + Dep;oyments
+  - Pod Design Questions + Deployments
   - Config Map
 
 
