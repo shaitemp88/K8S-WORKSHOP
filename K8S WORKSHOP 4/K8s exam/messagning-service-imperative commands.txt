@@ -1,0 +1,1 @@
+kubectl create service clusterip messaging-service -o yaml --tcp=9376 --dry-run=client | kubectl set selector --local -f - 'myapp=messaging' -o yaml 

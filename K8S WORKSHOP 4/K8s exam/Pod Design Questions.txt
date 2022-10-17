@@ -1,0 +1,48 @@
+1. Type the command for: Get pods with label information
+        kubectl get pods -o=custom-columns=PodName:.metadata.name,Label:.metadata.labels
+2. Create 5 nginx pods in which two of them is labeled env=prod and three of them is labeled env=dev
+        kubectl create -f pdq_nginxpod_template.yaml # change lables and names accordingly
+3. Verify all the pods are created with correct labels
+        kubectl get pods -o=custom-columns=PodName:.metadata.name,Label:.metadata.labels
+4. Get the pods with label env=dev
+        kubectl get pods -l env=dev
+5. Get the pods with label env=dev and also output the labels
+        kubectl get pods -l env=dev -o=custom-columns=PodName:.metadata.name,Label:.metadata.labels
+6. Get the pods with label env=prod
+        kubectl get pods -l env=prod
+7. Get the pods with label env=prod and also output the labels
+        kubectl get pods -l env=prod -o=custom-columns=PodName:.metadata.name,Label:.metadata.labels
+8. Get the pods with label env
+        kubectl get pods -l env
+9. Get the pods with labels env=dev and env=prod
+        kubectl get pods -l "env in (dev, prod)"
+10. Get the pods with labels env=dev and env=prod and output the labels as well
+    kubectl get pods -l "env in (dev, prod)" -o=custom-columns=PodName:.metadata.name,Label:.metadata.labels
+11. Change the label for one of the pod to env=uat and list all the pods to verify
+        kubectl label --overwrite pods pdq-pod3  env=uat
+        kubectl get pods -o=custom-columns=PodName:.metadata.name,Label:.metadata.labels
+12. Remove the labels for the pods that we created now and verify all the labels are removed
+        kubectl label pods pdq-pod1 env-
+        kubectl label pods pdq-pod2 env-
+        kubectl label pods pdq-pod3 env-
+        kubectl label pods pdq-pod4 env-
+        kubectl label pods pdq-pod5 env-
+        kubectl get pods -o=custom-columns=PodName:.metadata.name,Label:.metadata.labels
+13. Let’s add the label app=nginx for all the pods and verify (using kubectl)
+        kubectl label --overwrite pods pdq-pod1 app=nginx
+        kubectl label --overwrite pods pdq-pod2 app=nginx
+        kubectl label --overwrite pods pdq-pod3 app=nginx
+        kubectl label --overwrite pods pdq-pod4 app=nginx
+        kubectl label --overwrite pods pdq-pod5 app=nginx
+        kubectl get pods -l app=nginx
+14. Get all the nodes with labels (if using minikube you would get only master node)
+        kubectl get nodes -o=custom-columns=NodeName:.metadata.name,Label:.metadata.labels
+15. Label the worker node nodeName=nginxnode
+        kubectl label --overwrite nodes docker-desktop nodeName=nginxnode
+16. Create a Pod that will be deployed on the worker node with the label nodeName=nginxnode
+        kubectl apply -f pdq_nginxpod_template_nodeselector.yaml  # nodeSelector configured to nodeName=nginxnode
+17. Verify the pod that it is scheduled with the node selector on the right node… fix it if it’s not behind scheduled. 
+        kubectl get pods --field-selector spec.nodeName=docker-desktop
+18. Verify the pod nginx that we just created has this label
+        kubectl get pods nginx -o=custom-columns=PodName:.metadata.name,Label:.metadata.label
+

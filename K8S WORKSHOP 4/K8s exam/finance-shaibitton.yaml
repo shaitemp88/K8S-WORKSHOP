@@ -1,0 +1,6 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+    name:  finance-shaibitton
+    labels:
+        name:  finance-shaibitton

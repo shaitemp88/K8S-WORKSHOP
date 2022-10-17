@@ -1,0 +1,6 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+    name:  apx-x998-shaibitton
+    labels:
+        name:  apx-x998-shaibitton

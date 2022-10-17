@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    labels:
+        name: multi-pod
+        app: multi-pod
+    name: multi-pod
+spec:
+    containers:
+    -   image: nginx
+        name: alpha
+        env:
+          - name: name
+            value: "alpha"
+    -   image: busybox
+        name: beta
+        command: ["sleep 10"]
+        env:
+          - name: name
+            value: "beta"
+

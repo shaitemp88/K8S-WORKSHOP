@@ -1,0 +1,8 @@
+a. created object:
+    kubectl create -f nginx-deploy.yaml
+b.  check image version
+    kubectl get deployments -o wide
+c. update deployment image version
+    kubectl set image deployment/nginx-deploy nginximage=nginx:1.17
+d. verify image change
+    kubectl get deployments -o wide

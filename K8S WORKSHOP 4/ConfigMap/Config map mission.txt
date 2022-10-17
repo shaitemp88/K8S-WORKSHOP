@@ -1,0 +1,4 @@
+1. Created config.txt file
+2. kubectl create configmap keyvalcfgmap --from-file=config.txt
+3. Created through
+    kubectl create -f CONFIG-MAP-exmaple-pod-configmap 
